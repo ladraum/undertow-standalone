@@ -1,0 +1,197 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.texoit.undertow</groupId>
+	<version>1.0-SNAPSHOT</version>
+	<artifactId>undertow-parent</artifactId>
+	<name>Undertow Standalone Extensions</name>
+	<packaging>pom</packaging>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git@github.com:TexoLabs/undertow-standalone.git</connection>
+		<url>scm:git:git@github.com:TexoLabs/undertow-standalone.git</url>
+		<developerConnection>scm:git:git@github.com:TexoLabs/undertow-standalone.git</developerConnection>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>texo-release-repository</id>
+			<name>Texo Release Repository</name>
+			<url>http://repository.texoit.com:8081/content/repositories/PublicRelease/</url>
+		</repository>
+		<snapshotRepository>
+			<id>texo-snapshot-repository</id>
+			<name>Texo Snapshot Repository</name>
+			<url>http://repository.texoit.com:8081/content/repositories/PublicSnapshot/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<developers>
+		<developer>
+			<id>miere</id>
+			<email>miere.teixeira@gmail.com</email>
+			<name>Miere Liniel Teixeira</name>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>undertow-standalone</module>
+		<module>undertow-build</module>
+<!-- 		<module>undertow-sample</module> -->
+	</modules>
+
+	<properties>
+		<!-- Dependencies Versions -->
+		<version.junit>4.10</version.junit>
+		<version.lombok>1.12.4</version.lombok>
+		<version.mockito>1.9.5</version.mockito>
+		<version.undertow>1.0.1.Final</version.undertow>
+		<!-- Plugin's Versions -->
+		<version.eclipse.plugin>2.9</version.eclipse.plugin>
+		<version.maven.plugin>2.3.2</version.maven.plugin>
+		<version.assembly.plugin>2.2.1</version.assembly.plugin>
+		<version.jar.plugin>2.4</version.jar.plugin>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Test time dependencies -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>${version.mockito}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Compile time dependencies -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${version.lombok}</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- Main project dependencies -->
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<version>${project.version}</version>
+				<artifactId>undertow-standalone</artifactId>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-core</artifactId>
+				<version>${version.undertow}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- Mandatory dependencies -->
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>${project.basedir}/source</sourceDirectory>
+		<testSourceDirectory>${project.basedir}/tests</testSourceDirectory>
+		<directory>${project.basedir}/output</directory>
+		<outputDirectory>${project.basedir}/output/classes</outputDirectory>
+		<testOutputDirectory>${project.basedir}/output/test-classes</testOutputDirectory>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/source</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/tests</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${version.eclipse.plugin}</version>
+				<configuration>
+					<projectNameTemplate>[name]</projectNameTemplate>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.maven.plugin}</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<optimize>true</optimize>
+					<debug>false</debug>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${version.assembly.plugin}</version>
+					<configuration>
+						<descriptors>
+							<descriptor>configurations/assembly.xml</descriptor>
+						</descriptors>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>single</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${version.jar.plugin}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

@@ -1,0 +1,9 @@
+target
+output
+faces-config.xml
+.classpath
+.project
+.metadata
+.settings
+.DS_Store
+.cache

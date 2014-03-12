@@ -125,6 +125,9 @@ Once you deployed your deps and resources, you could start the application as fo
 sh bin/undertow.sh
 ```
 
+## Creating a bundle from my maven project
+```TODO```
+
 ## Contributing
 Undertow Standalone need your help to provide the best to the community. Even simple tasks like
 testing the micro container, finding typos in docs or reporting improvements feedbacks will be welcome.
@@ -136,4 +139,4 @@ testing the micro container, finding typos in docs or reporting improvements fee
 
 ### License
 
-Reactor is [Apache 2.0 licensed](http://www.apache.org/licenses/LICENSE-2.0.html).
+Undertow Standalone is [Apache 2.0 licensed](http://www.apache.org/licenses/LICENSE-2.0.html).

@@ -105,5 +105,35 @@ With DeploymentContext is possible to analyze available classes in Classpath ( t
 ( throught ```context.register( "/hello/", new HttpHandler {  /*...*/ } )``` ), providing
 a full lifecycle to your application.
 
+## Instalation instructions
 
+Goto [Releases](https://github.com/TeXOLabs/undertow-standalone/releases) and download the
+[last bundled release](https://github.com/TeXOLabs/undertow-standalone/releases/download/1.0-Alpha1/undertow-standalone-1.0.Alpha1.zip) and unzip it in a nice location.
 
+As a micro container it was designed to contains a single Java application. Your just unzipped undertow folder
+should contains three directories:
+* bin: which contains scripts to manage undertow
+* lib: where you should put all your dependencies
+* webapp: where you could put all your web assets and resources
+
+Once you deployed your deps and resources, you could start the application as following:
+```bash
+# on linux console environment
+./bin/undertow.sh
+# on windows, in powershell console environment
+# yes, you should use linux slashes here
+sh bin/undertow.sh
+```
+
+## Contributing
+Undertow Standalone need your help to provide the best to the community. Even simple tasks like
+testing the micro container, finding typos in docs or reporting improvements feedbacks will be welcome.
+
+## Community / Support
+
+* Google Group: yet not created
+* [GitHub Issues](https://github.com/TeXOLabs/undertow-standalone/issues)
+
+### License
+
+Reactor is [Apache 2.0 licensed](http://www.apache.org/licenses/LICENSE-2.0.html).

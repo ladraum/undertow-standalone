@@ -1,5 +1,7 @@
 package com.texoit.undertow.standalone.api;
 
+import io.undertow.server.HttpHandler;
+
 import java.util.Collection;
 
 public interface DeploymentContext {
@@ -11,5 +13,7 @@ public interface DeploymentContext {
 	Collection<DeploymentHook> deploymentHooks();
 
 	Collection<RequestHook> requestHooks();
+
+	DeploymentContext register( String uri, HttpHandler handler );
 
 }

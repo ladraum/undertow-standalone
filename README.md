@@ -5,12 +5,12 @@ Undertow Standalone is a micro container running under Undertow core. It
 just provide an out-of-box structure to initialize your application without
 writing some bootstraping lines of code.
 
-## Don't repeat your self
+## Don't repeat yourself
 Undertow is an amazing web development plataform. It is the current Wildfly
 core engine, is simple and [scalable](http://www.techempower.com/benchmarks/#section=data-r8&hw=i7&test=plaintext).
 Nevertheless, it has no standard way to struture and embed your project.
 
-Here is the default hello world exemple provided by Undertow documentation.
+Here is the default hello world example provided by Undertow documentation.
 
 ```java
 public class HelloWorldServer {
@@ -47,9 +47,9 @@ public class HelloWorldHandler implements HttpHandler {
 ```
 
 ## Intercepting requests
-Undertow internaly has a simple chain of responsibility where it store its routing
+Undertow internally has a simple chain of responsibility where it store its routing
 design and provide an [easy to use DSL](http://undertow.io/documentation/core/built-in-handlers.html).
-Even so, intercept requests isn't an easy task to do.
+Even so, intercepting requests isn't an easy task to do.
 
 Undertow Standalone provide an easy RequestHook where you can intercept requests, change
 the HttpServerExchange state and define if the request should go on or not.
@@ -73,13 +73,13 @@ public class TraceRequestHook implements RequestHook {
 
 ```
 
-Every request hook is disposed in a chain of resposibility. If a RequestHook does not call ```chain.executeNext()```
+Every request hook is disposed in a chain of responsibility. If a RequestHook does not call ```chain.executeNext()```
 it will interrupt the request lifecycle. It means that the hook is able to do what it want with the request.
 RequestHook's are useful to plug external frameworks like [RestEasy](http://www.jboss.org/resteasy) or a custom template
 engine like [Mustache](http://mustache.github.io/).
 
 ## Listening to deployments
-Its possible to listen deployments events like ```onDeploy``` and ```onUndeploy```.
+It's possible to listen deployments events like ```onDeploy``` and ```onUndeploy```.
 
 ```java
 @lombok.extern.log4j.Log4j
@@ -99,18 +99,18 @@ public class TraceDeploymentHook implements DeploymentHook {
 
 ```
 
-With DeploymentContext is possible to analyze available classes in Classpath ( throught
-```context.availableClasses()``` ). Its also possible to register new request hooks ( throught
+With DeploymentContext is possible to analyze available classes in Classpath ( through
+```context.availableClasses()``` ). Its also possible to register new request hooks ( through
 ```context.register( new RequestHook {  /*...*/ } )``` ) and register Undertow HttpHandlers
-( throught ```context.register( "/hello/", new HttpHandler {  /*...*/ } )``` ), providing
+( through ```context.register( "/hello/", new HttpHandler {  /*...*/ } )``` ), providing
 a full lifecycle to your application.
 
-## Instalation instructions
+## Installation  instructions
 
-Goto [Releases](https://github.com/TeXOLabs/undertow-standalone/releases) and download the
+Go to [Releases](https://github.com/TeXOLabs/undertow-standalone/releases) and download the
 [last bundled release](https://github.com/TeXOLabs/undertow-standalone/releases/download/1.0-Alpha1/undertow-standalone-1.0.Alpha1.zip) and unzip it in a nice location.
 
-As a micro container it was designed to contains a single Java application. Your just unzipped undertow folder
+As a micro container it was designed to contain a single Java application. Your just unzipped undertow folder
 should contains three directories:
 * bin: which contains scripts to manage undertow
 * lib: where you should put all your dependencies
